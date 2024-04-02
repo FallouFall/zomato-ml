@@ -15,8 +15,7 @@ st.set_page_config(
 with st.sidebar :
     st.image("eae_img.png" , width = 200)
     st.write(
-          """Restaurants from all over the world can be found here in Bengaluru. The basic idea of analyzing the Zomato dataset is to get a fair idea about the factors affecting the establishment
-            of different types of restaurant at different places in Bengaluru, aggregate rating of each restaurant.""" )
+          """Utilizing a combination of customer votes, location data, food type, delivery options, and cuisine preferences, our cutting-edge model generates predictive scores to help users pinpoint the perfect restaurant. By analyzing these multifaceted factors, we offer tailored recommendations that align with individual tastes and convenience preferences. This innovative approach not only facilitates restaurant discovery but also elevates overall dining experiences, ensuring users consistently find top-quality establishments that cater to their specific needs and desires.""" )
     st.write(
             "Data extracted from: https://www.kaggle.com/datasets/himanshupoddar/zomato-bangalore-restaurants")
 
