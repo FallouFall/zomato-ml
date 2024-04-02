@@ -76,7 +76,7 @@ st.markdown(
         - **GitHub:** [School Management GitHub Repo](https://github.com/FallouFall/GestionScolaire)
         - **GitHub (RMI Version):** [School Management with RMI GitHub Repo](https://github.com/FallouFall/ServeurGestionEtudiant)
         - **GitHub (Client Version):** [Client for School Management with RMI GitHub Repo](https://github.com/FallouFall/ClientGestionEtudiants)
-        - **GitHub:** [Zomato Machine Learning](https://github.com/FallouFall/Machine-Learing)
+        - **GitHub:** [Zomato Machine Learning](https://github.com/FallouFall/zomato-ml)
     ---
 
     ## 📫 How to Reach Me:
