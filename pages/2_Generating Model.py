@@ -113,5 +113,5 @@ train_and_evaluate_model("Linear Regression", LinearRegression, linear_reg_param
 train_and_evaluate_model("Extra Trees Regressor", ExtraTreesRegressor, extra_tree_params, x_train, y_train, x_test,
                          y_test)
 train_and_evaluate_model("Gradient Boost Regressor", XGBRegressor, xgb_params, x_train, y_train, x_test, y_test)
-train_and_evaluate_model("Random Forest Regressor", RandomForestRegressor, random_forest_params, x_train, y_train,
-                         x_test, y_test)
+#train_and_evaluate_model("Random Forest Regressor", RandomForestRegressor, random_forest_params, x_train, y_train,
+                         #x_test, y_test)
