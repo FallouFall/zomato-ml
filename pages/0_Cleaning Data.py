@@ -47,27 +47,21 @@ if 'df' in locals():
   st.subheader("Data Preview")
   st.dataframe(df)
 
-
-
-
-
-# Function to encode image to base64
+st.divider()
 def encode_image_to_base64(image_path):
     with open(image_path, "rb") as img_file:
         encoded_string = base64.b64encode(img_file.read()).decode()
     return encoded_string
 
-# Image paths and captions
 images = [
     {"path": "data/1.png", "caption": "Caption Text"},
     {"path": "data/2.png", "caption": "Caption Two"},
     {"path": "data/3.png", "caption": "Caption Three"},
-    { "path" : "data/4.png" , "caption" : "Caption Two" } ,
-    { "path" : "data/5.png" , "caption" : "Caption Three" },
-    { "path" : "data/6.png" , "caption" : "Caption Two" } ,
-    { "path" : "data/7.png" , "caption" : "Caption Three" },
-    { "path" : "data/8.png" , "caption" : "Caption Two" }
-
+    {"path": "data/4.png", "caption": "Caption Four"},
+    {"path": "data/5.png", "caption": "Caption Five"},
+    {"path": "data/6.png", "caption": "Caption Six"},
+    {"path": "data/7.png", "caption": "Caption Seven"},
+    {"path": "data/8.png", "caption": "Caption Eight"}
 ]
 
 # Replace image src with base64 encoded images
@@ -109,21 +103,6 @@ img {vertical-align: middle;}
   top: 0;
 }
 
-/* The dots/bullets/indicators */
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.4s ease;
-}
-
-.active {
-  background-color: #717171;
-}
-
 /* Fading animation */
 .fade {
   animation-name: fade;
@@ -150,23 +129,12 @@ for i, image in enumerate(images):
     image_base64 = encode_image_to_base64(image["path"])
     html_content += f"""
     <div class="mySlides fade">
-      <div class="numbertext">{i+1} / {len(images)}</div>
-      <img src="data:image/png;base64,{image_base64}"style="width: 100%; height: auto;">
+      <img src="data:image/png;base64,{image_base64}" style="width: 100%; height: 300px;">
       <div class="text">{image["caption"]}</div>
     </div>
     """
 
 html_content += """
-</div>
-<br>
-
-<div style="text-align:center">
-  <span class="dot">1</span> 
-  <span class="dot">2</span> 
-  <span class="dot">3</span> 
-  <span class="dot">4</span> 
-  <span class="dot">5</span> 
-  <span class="dot">6</span> 
 </div>
 
 <script>
@@ -176,17 +144,12 @@ showSlides();
 function showSlides() {
   let i;
   let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";  
   }
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
   slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 5000); 
 }
 </script>
@@ -196,7 +159,12 @@ function showSlides() {
 """
 
 # Render HTML using components.html
-components.html(html_content, height=900)
+components.html(html_content, height=300)
+
+
+
+st.divider()
+
 def data_cleaning_section():
     st.header("Data Cleaning")
     st.markdown("During data cleaning, one of the tasks is to ensure that each column has the correct data type.")

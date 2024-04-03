@@ -49,6 +49,23 @@ plt.show()
 c.pyplot(fig)
 
 
+
+
+
+fig = px.box(
+    df,
+    y="cost",
+    title="Box plot of approx cost",
+    width=800,
+    height=900
+)
+
+fig.update_layout(yaxis_title="Price")
+st.plotly_chart(fig)
+
+
+
+
 st.divider()
 st.subheader("review rates")
 with st.container() :
