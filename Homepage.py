@@ -63,7 +63,7 @@ st.markdown(
     - **App URL:** [Data MLL App](https://zomato-ml.streamlit.app/)
     ## Projects
     - **H**
-        - **GitHub:** [Machine-Learing](https://github.com/FallouFall/Machine-Learing)
+        - **GitHub:** [Machine-Learing-Resto-Reviews](https://github.com/FallouFall/zomato-ml)
         - **GitHub:** [eae_ipld_project](https://github.com/FallouFall/eae_ipld_project)
         - **Tech Stack:** JavaFX/Springboot/Angular https://www.gnudem.com/
         - **GitHub:** [Hospital Management GitHub Repo](https://github.com/FallouFall/Hoggy_Web)
