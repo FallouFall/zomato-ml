@@ -24,7 +24,7 @@ st.title("🌶️ Zomato Bangalore Restaurants")
 st.divider()
 
 
-nrows = st.slider("Select the number of rows to read:", min_value=200, max_value=24000, step=100)
+nrows = st.slider("Select the number of rows to read:", min_value=500, max_value=24000, step=500)
 try:
   df = pd.read_csv("data/zomatoClean.csv", index_col=False, nrows=nrows)
   st.success(f"Successfully read {nrows} Samples ")
@@ -34,7 +34,8 @@ except FileNotFoundError:
 
 if 'df' in locals():
   st.subheader("Data Preview")
-  st.dataframe(df.head(10))
+  df = pd.DataFrame(df)
+  st.write(df)
 
 st.divider()
 st.subheader("Top Restaurant")

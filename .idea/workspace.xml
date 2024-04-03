@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e177566-10c2-4e67-8efb-05186f4b6b26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/3_Find Best Restaurant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/0_Cleaning Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/0_Cleaning Data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/3_Review.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/1_Data Visualisation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/1_Data Visualisation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/3_Find Best Restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/3_Find Best Restaurant.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,26 +34,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.2_Generating Model.executor": "Run",
-    "Python.Homepage.executor": "Run",
-    "Python.Model.executor": "Run",
-    "Python.Transformation (1).executor": "Run",
-    "Python.Transformation.executor": "Run",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore_missing_gitignore": "true",
-    "last_opened_file_path": "C:/Users/user/Desktop/f/pages",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.2_Generating Model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Homepage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Transformation (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.Transformation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/f/pages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\f\pages" />
@@ -216,7 +217,9 @@
       <workItem from="1712067136553" duration="4163000" />
       <workItem from="1712076484790" duration="52000" />
       <workItem from="1712079121496" duration="1074000" />
-      <workItem from="1712146506466" duration="4951000" />
+      <workItem from="1712146506466" duration="6900000" />
+      <workItem from="1712171446537" duration="415000" />
+      <workItem from="1712171912452" duration="4280000" />
     </task>
     <servers />
   </component>

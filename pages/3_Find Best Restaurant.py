@@ -71,7 +71,7 @@ st.subheader("I can help you find the best Restaurant")
 
 online_order =st.selectbox('Online order', ['Yes', 'No'])
 book_table = st.selectbox('Book Table', ['Yes', 'No'])
-votes =st.selectbox('Votes', list(votes_dict.values()))
+votes =st.selectbox(' Nb Customers Rating', list(votes_dict.values()))
 location =st.selectbox('Location', list(locations_dict.values()))
 restaurant_type =st.selectbox('Type Restaurant', list(types_dict.values()))
 cuisines =st.selectbox('Cuisines', list(cuisine_dict.values()))
