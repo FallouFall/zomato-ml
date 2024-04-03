@@ -54,13 +54,13 @@ c.pyplot(fig)
 
 fig = px.box(
     df,
-    y="cost",
-    title="Box plot of approx cost",
+    y="rate",
+    title="Box plot of approx Rating Restaurant",
     width=800,
-    height=900
+    height=600
 )
 
-fig.update_layout(yaxis_title="Price")
+fig.update_layout(yaxis_title="Rating")
 st.plotly_chart(fig)
 
 
