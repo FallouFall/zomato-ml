@@ -71,8 +71,7 @@ st.plotly_chart(fig)
 
 
 
-
-
+st.divider()
 likes = []
 for item in df['dish_liked'].dropna():
     array_split = re.split(',', item)
@@ -117,14 +116,12 @@ fig = px.bar(top_rest_types, y=top_rest_types.index, x=top_rest_types.values, or
 
 
 
-st.divider()
-# Calculate the number of restaurants in each rating category
+
 x1 = ((df['rate'] >= 1) & (df['rate'] < 2)).sum()
 x2 = ((df['rate'] >= 2) & (df['rate'] < 3)).sum()
 x3 = ((df['rate'] >= 3) & (df['rate'] < 4)).sum()
 x4 = ((df['rate'] >= 4) & (df['rate'] <= 5)).sum()
 
-# Create a DataFrame for the pie chart
 pie_data = pd.DataFrame({'Rating Category': ['1<rating<2', '2<rating<3', '3<rating<4', '4<rating<5'],
                          'Count': [x1, x2, x3, x4]})
 
@@ -133,7 +130,7 @@ fig = px.pie(pie_data, values='Count', names='Rating Category',
              title='Restaurant Reviews %', hole=0.3,
              color_discrete_sequence=['deepskyblue'] * len(pie_data))
 
-# Show the plot
+
 st.plotly_chart(fig)
 
 
