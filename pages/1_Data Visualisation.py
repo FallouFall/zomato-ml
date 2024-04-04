@@ -51,8 +51,9 @@ fig = px.box(
     df,
     y="rate",
     title="Box plot of approx Rating Restaurant",
-    width=800,
-    height=600
+    width=600,
+    height=500,
+    color_discrete_sequence=['deepskyblue']
 )
 
 fig.update_layout(yaxis_title="Rating")
