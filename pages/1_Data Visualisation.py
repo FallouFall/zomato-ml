@@ -38,8 +38,7 @@ if 'df' in locals():
   st.write(df)
 
 st.divider()
-st.subheader("Top Restaurant")
-st.subheader("Top Restaurant")
+
 chains = df['name'].value_counts().nlargest(20).sort_values(ascending=True)  # Sort in descending order
 fig = go.Figure(go.Bar(x=chains.values, y=chains.index, orientation='h', marker_color='deepskyblue'))
 fig.update_layout(title="Top Restaurant", xaxis_title="Number", yaxis_title="Restaurant Name")
@@ -63,7 +62,7 @@ st.plotly_chart(fig)
 
 
 st.divider()
-st.subheader("review rates")
+
 with st.container() :
     fig = px.histogram(df , x = 'rate' , title = "Review Rates" , nbins = 20 ,
             color_discrete_sequence = ['deepskyblue'])
@@ -73,7 +72,7 @@ st.plotly_chart(fig)
 
 
 
-st.subheader("Type Liked Foods")
+
 likes = []
 for item in df['dish_liked'].dropna():
     array_split = re.split(',', item)
@@ -104,7 +103,7 @@ st.plotly_chart(fig)
 
 
 st.divider()
-st.subheader("Type Of Restaurant")
+
 top_rest_types = df['rest_type'].value_counts().nlargest(20)
 fig = px.bar(top_rest_types, y=top_rest_types.index, x=top_rest_types.values, orientation='h',
              title="Type of Restaurant", labels={'x': 'Number', 'y': 'Type of Restaurant'},
