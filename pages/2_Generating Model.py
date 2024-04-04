@@ -106,7 +106,7 @@ def train_and_evaluate_model(model_name, model_class, model_params, x_train, y_t
 linear_reg_params = {}
 extra_tree_params = {'n_estimators': 120}
 #xgb_params = {'objective': 'reg:squarederror', 'random_state': 10}
-xgb_params = {'objective': 'reg:squarederror', 'random_state': 10, 'n_estimators': 100, 'learning_rate': 0.1, 'max_depth': 3}
+xgb_params = {'objective': 'reg:squarederror', 'random_state': 10, 'n_estimators': 50, 'learning_rate': 0.3, 'max_depth': 2}
 svm_params = {'kernel': 'rbf', 'C': 1.0, 'epsilon': 0.1}
 random_forest_params = {'n_estimators': 300, 'random_state': 245, 'min_samples_leaf': 0.0001}
 
