@@ -3,7 +3,7 @@ from pyforest  import*
 import time
 import re
 import plotly.express as px
-
+import plotly.graph_objects as go
 
 # ----- Page configs -----
 st.set_page_config(
@@ -24,7 +24,7 @@ st.title("🌶️ Zomato Bangalore Restaurants")
 st.divider()
 
 
-nrows = st.slider("Select the number of rows to read:", min_value=500, max_value=24000, step=500)
+nrows = st.slider("Select the number of rows to read:", min_value=2000, max_value=24000, step=500)
 try:
   df = pd.read_csv("data/zomatoClean.csv", index_col=False, nrows=nrows)
   st.success(f"Successfully read {nrows} Samples ")
@@ -39,16 +39,11 @@ if 'df' in locals():
 
 st.divider()
 st.subheader("Top Restaurant")
-c = st.container(border = True)
-fig = plt.figure(figsize = (10 , 5))
-chains = df['name'].value_counts()[:20]
-sns.barplot(x=chains,y=chains.index,palette='deep')
-plt.title("top Restaurant")
-plt.xlabel("number")
-plt.show()
-c.pyplot(fig)
-
-
+st.subheader("Top Restaurant")
+chains = df['name'].value_counts().nlargest(20).sort_values(ascending=True)  # Sort in descending order
+fig = go.Figure(go.Bar(x=chains.values, y=chains.index, orientation='h', marker_color='deepskyblue'))
+fig.update_layout(title="Top Restaurant", xaxis_title="Number", yaxis_title="Restaurant Name")
+st.plotly_chart(fig)
 
 
 
@@ -69,109 +64,117 @@ st.plotly_chart(fig)
 st.divider()
 st.subheader("review rates")
 with st.container() :
-    fig , ax = plt.subplots(figsize = (10 , 5))
-    sns.histplot(df['rate'] , bins = 20 , kde = True)
-    st.pyplot(fig)
+    fig = px.histogram(df , x = 'rate' , title = "Review Rates" , nbins = 20 ,
+            color_discrete_sequence = ['deepskyblue'])
 
-st.subheader("Type Of Restaurant")
-# Count occurrences of each type of restaurant
-word_counts = { }
-for word in df['type'] :
-    if word in word_counts :
-        word_counts[word] += 1
-    else :
-        word_counts[word] = 1
+st.plotly_chart(fig)
 
-my_df = pd.DataFrame(word_counts.items())
-restptype = sns.barplot(x = 0 , y = 1 , data = my_df)
-restptype.set(xlabel = 'Type of Restaurant' , ylabel = 'Number' ,
-title = 'Number of Occurrences of Each Type of Restaurant')
-st.pyplot(plt.gcf())
 
-# top favorite food
-df.index = range(df.shape[0])
+
+
+st.subheader("Type Liked Foods")
 likes = []
-for i in range(df.shape[0]) :
-    array_split = re.split(',' , df['dish_liked'][i])
-    for item in array_split :
-        likes.append(item)
-
-favorite = pd.Series(likes).value_counts()
-
-
-
-st.divider()
-st.subheader("Type Of Restaurant")
-fig=plt.figure(figsize=(18,10))
-rest= df['rest_type'].value_counts()[:20]
-sns.barplot(x=rest, y=rest.index, alpha=0.9)
-plt.title("Type of Restaurant")
-plt.xlabel("number")
-st.pyplot(fig)
-
-
-st.divider()
-st.subheader("Rating")
-x1=((df['rate']>=1) & (df['rate']<2)).sum()
-x2=((df['rate']>=2) & (df['rate']<3)).sum()
-x3=((df['rate']>=3) & (df['rate']<4)).sum()
-x4=((df['rate']>=4) & (df['rate']<=5)).sum()
-slices = [x1,x2,x3,x4]
-label=['1<rating<2','2<rating<3','3<rating<4','4<rating<5']
-plt.figure(figsize=(6, 6))
-plt.pie(slices, labels=label, autopct='%1.1f%%', pctdistance=.2)
-plt.title('Restaurant Reviews %')
-plt.axis('equal')
-plt.legend(loc="upper right")
-st.pyplot(plt.gcf())
-
-
-#TOP 20 FOOD
-st.divider()
-st.subheader("Top Food")
-likes = []
-for i in range(df.shape[0]):
-    array_split = re.split(',', df['dish_liked'][i])
+for item in df['dish_liked'].dropna():
+    array_split = re.split(',', item)
     for item in array_split:
         likes.append(item.strip())
 
 
-favorite = pd.Series(likes).value_counts()
-st.title("Top 20 Liked Foods")
-fig, ax = plt.subplots(figsize=(10, 8))
-favorite.nlargest(n=20, keep='first').plot(kind='bar', ax=ax)
-ax.set_xlabel("Food")
-ax.set_ylabel("Count")
-ax.set_title("Top 20 Food Likes")
-for i in ax.patches:
-    ax.annotate(str(i.get_height()), (i.get_x() * 1.005, i.get_height() * 1.005))
+favorite = pd.Series(likes).value_counts().nlargest(20)
+favorite = favorite.sort_values(ascending=True)
+fig = px.bar(x=favorite.values, y=favorite.index, orientation='h',
+             labels={'x': 'Count', 'y': 'Food'},
+             title='Top 20 Liked Foods',
+             color=favorite.index, color_continuous_scale=['deepskyblue']*len(favorite.index))
+st.plotly_chart(fig)
 
-st.pyplot(fig)
+
+# top favorite restaurant
+word_counts = df['type'].value_counts()
+fig = px.bar(x=word_counts.index, y=word_counts.values, color=word_counts.index,
+             labels={'x': 'Type of Restaurant', 'y': 'Number'},
+             title='Number of Occurrences of Each Type of Restaurant')
+fig.update_traces(marker_color='deepskyblue')
+st.plotly_chart(fig)
+
+
+
 
 
 
 st.divider()
-st.subheader("Heatmap of Vote Location by Cost")
-red_colorscale=  ['#ffffff','#8E0142','#C2185B','#E83A53','#FF6260','#FF8A80','#FFB3B1','#FFDAD7','#FFF7F3']
-fig = px.density_heatmap(df, x='rate', y='cost', nbinsx=25, nbinsy=25,
-                         color_continuous_scale=red_colorscale[::-1],  # Reverse for ascending red intensity
-                        )
-fig.update_layout(
-    width=800,  # Adjust width as needed
-    height=600,  # Adjust height as needed
+st.subheader("Type Of Restaurant")
+top_rest_types = df['rest_type'].value_counts().nlargest(20)
+fig = px.bar(top_rest_types, y=top_rest_types.index, x=top_rest_types.values, orientation='h',
+             title="Type of Restaurant", labels={'x': 'Number', 'y': 'Type of Restaurant'},
+             color=top_rest_types.index, color_discrete_sequence=['deepskyblue']*len(top_rest_types))
 
-    plot_bgcolor = 'white'
+
+
+
+
+
+
+
+
+st.divider()
+# Calculate the number of restaurants in each rating category
+x1 = ((df['rate'] >= 1) & (df['rate'] < 2)).sum()
+x2 = ((df['rate'] >= 2) & (df['rate'] < 3)).sum()
+x3 = ((df['rate'] >= 3) & (df['rate'] < 4)).sum()
+x4 = ((df['rate'] >= 4) & (df['rate'] <= 5)).sum()
+
+# Create a DataFrame for the pie chart
+pie_data = pd.DataFrame({'Rating Category': ['1<rating<2', '2<rating<3', '3<rating<4', '4<rating<5'],
+                         'Count': [x1, x2, x3, x4]})
+
+# Create the pie chart using Plotly with deepskyblue color
+fig = px.pie(pie_data, values='Count', names='Rating Category',
+             title='Restaurant Reviews %', hole=0.3,
+             color_discrete_sequence=['deepskyblue'] * len(pie_data))
+
+# Show the plot
+st.plotly_chart(fig)
+
+
+
+
+
+
+
+
+st.divider()
+deep_sky_blue_colorscale = ['#ffffff', '#00BFFF']
+fig = px.density_heatmap(df, x='rate', y='cost', nbinsx=25, nbinsy=25,
+                         color_continuous_scale=deep_sky_blue_colorscale)
+fig.update_layout(
+    title="Heatmap of Vote Location by Cost",
+    width=800,
+    height=600,
+    plot_bgcolor='white'
 )
 st.plotly_chart(fig)
 
 
-def scatter_plot(data):
-    fig, ax = plt.subplots(figsize=(8, 8))
-    ax.scatter(data['votes'], data['rate'], color='red', alpha=0.5)
-    ax.set_title('Scatter Plot of Votes vs Rate')
-    ax.set_xlabel('Votes')
-    ax.set_ylabel('Rate')
-    ax.grid(False)
+
+st.divider()
+
+
+def scatter_plot( data ) :
+    fig = px.scatter(data , x = 'rate' , y = 'cost' , title = 'Scatter Plot of Cost vs Rate' ,
+            labels = { 'Rate' : 'Rates' , 'Cost' : 'Cost' } ,
+            opacity = 0.6 , trendline = 'ols')
+
+    fig.update_layout(
+            title = "Scatter Plot of Rate vs Cost" ,
+            xaxis_title = "Votes" ,
+            yaxis_title = "Rate" ,
+            showlegend = False ,
+            width = 600 ,
+            height = 600 ,
+            plot_bgcolor = 'white'
+            )
     return fig
-st.title('Scatter Plot of Votes vs Rate')
-st.pyplot(scatter_plot(df))
+
+
+st.plotly_chart(scatter_plot(df))
