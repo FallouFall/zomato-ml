@@ -24,7 +24,7 @@ st.title("🌶️ Zomato Bangalore Restaurants")
 st.divider()
 
 
-nrows = st.slider("Select the number of rows to read:", min_value=2000, max_value=24000, step=500)
+nrows = st.slider("Select the number of rows to read:", min_value=1000, max_value=24000, step=500)
 try:
   df = pd.read_csv("data/zomatoClean.csv", index_col=False, nrows=nrows)
   st.success(f"Successfully read {nrows} Samples ")
