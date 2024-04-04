@@ -50,7 +50,7 @@ st.divider()
 
 st.subheader("Number of Rows to Read")
 
-nrows = st.slider("Select the number of rows to read:", min_value=20000, max_value=24000, step=1000)
+nrows = st.slider("Select the number of rows to read:", min_value=1000, max_value=24000, step=100)
 try:
     df = pd.read_csv("data/zomatoM.csv", index_col=False, nrows=nrows)
     x = df.drop('rate' , axis = 1)
