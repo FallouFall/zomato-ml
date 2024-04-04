@@ -39,10 +39,16 @@ if 'df' in locals():
 
 st.divider()
 
-chains = df['name'].value_counts().nlargest(20).sort_values(ascending=True)  # Sort in descending order
-fig = go.Figure(go.Bar(x=chains.values, y=chains.index, orientation='h', marker_color='deepskyblue'))
-fig.update_layout(title="Top Restaurant", xaxis_title="Number", yaxis_title="Restaurant Name")
+chains = df['name'].value_counts().nlargest(20).sort_values(ascending=True)
+fig = px.bar(x=chains.values, y=chains.index, orientation='h',
+             labels={'x': 'Top 20', 'y': 'Food'},
+             title='Top 20 Liked Foods',
+             color=chains.index, color_continuous_scale=['deepskyblue']*len(chains.index),
+             color_discrete_sequence=px.colors.qualitative.Pastel*len(chains.index),
+             )
 st.plotly_chart(fig)
+
+
 
 
 
@@ -82,9 +88,10 @@ for item in df['dish_liked'].dropna():
 favorite = pd.Series(likes).value_counts().nlargest(20)
 favorite = favorite.sort_values(ascending=True)
 fig = px.bar(x=favorite.values, y=favorite.index, orientation='h',
-             labels={'x': 'Count', 'y': 'Food'},
+             labels={'x': '', 'y': 'Food'},
              title='Top 20 Liked Foods',
              color=favorite.index, color_continuous_scale=['deepskyblue']*len(favorite.index))
+
 st.plotly_chart(fig)
 
 
@@ -92,21 +99,19 @@ st.plotly_chart(fig)
 word_counts = df['type'].value_counts()
 fig = px.bar(x=word_counts.index, y=word_counts.values, color=word_counts.index,
              labels={'x': 'Type of Restaurant', 'y': 'Number'},
-             title='Number of Occurrences of Each Type of Restaurant')
-fig.update_traces(marker_color='deepskyblue')
+             title='Number of Occurrences of Each Type of Restaurant',
+             color_continuous_scale = ['deepskyblue'] * len(df['type'].index))
 st.plotly_chart(fig)
-
-
-
-
-
-
 st.divider()
+
+
+
+
 
 top_rest_types = df['rest_type'].value_counts().nlargest(20)
 fig = px.bar(top_rest_types, y=top_rest_types.index, x=top_rest_types.values, orientation='h',
              title="Type of Restaurant", labels={'x': 'Number', 'y': 'Type of Restaurant'},
-             color=top_rest_types.index, color_discrete_sequence=['deepskyblue']*len(top_rest_types))
+             color_continuous_scale = ['deepskyblue'] * len(df['rest_type'].index))
 
 
 
@@ -125,12 +130,11 @@ x4 = ((df['rate'] >= 4) & (df['rate'] <= 5)).sum()
 pie_data = pd.DataFrame({'Rating Category': ['1<rating<2', '2<rating<3', '3<rating<4', '4<rating<5'],
                          'Count': [x1, x2, x3, x4]})
 
-# Create the pie chart using Plotly with deepskyblue color
+
+custom_colors = ['#FF5733', '#FFC300', '#33FF57', '#3399FF', '#B233FF']
 fig = px.pie(pie_data, values='Count', names='Rating Category',
              title='Restaurant Reviews %', hole=0.3,
-             color_discrete_sequence=['deepskyblue'] * len(pie_data))
-
-
+             color_discrete_sequence=custom_colors)
 st.plotly_chart(fig)
 
 
