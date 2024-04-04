@@ -50,7 +50,7 @@ st.divider()
 
 st.subheader("Number of Rows to Read")
 
-nrows = st.slider("Select the number of rows to read:", min_value=1000, max_value=24000, step=100)
+nrows = st.slider("Select the number of rows to read:", min_value=750, max_value=24000, step=250)
 try:
     df = pd.read_csv("data/zomatoM.csv", index_col=False, nrows=nrows)
     x = df.drop('rate' , axis = 1)
@@ -114,7 +114,8 @@ random_forest_params = {'n_estimators': 300, 'random_state': 245, 'min_samples_l
 train_and_evaluate_model("Linear Regression", LinearRegression, linear_reg_params, x_train, y_train, x_test, y_test)
 train_and_evaluate_model("Extra Trees Regressor", ExtraTreesRegressor, extra_tree_params, x_train, y_train, x_test,
                          y_test)
-train_and_evaluate_model("Gradient Boost Regressor", XGBRegressor, xgb_params, x_train, y_train, x_test, y_test)
 train_and_evaluate_model("Random Forest Regressor", RandomForestRegressor, random_forest_params, x_train, y_train,
                          x_test, y_test)
 train_and_evaluate_model("Support Vector Machine", SVR, svm_params, x_train, y_train, x_test, y_test)
+train_and_evaluate_model("Gradient Boost Regressor", XGBRegressor, xgb_params, x_train, y_train, x_test, y_test)
+
